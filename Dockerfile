@@ -6,7 +6,8 @@ WORKDIR /usr/share/nginx/html
 
 # Copy the application files into the container
 COPY index.html .
-COPY style.css css/
+COPY calculator.html .
+COPY styles.css css/
 COPY script.js js/
 
 # Expose port 80 for web traffic
