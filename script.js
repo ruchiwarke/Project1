@@ -1,3 +1,8 @@
+// script.js
+function redirectToCalculator() {
+    window.location.href = 'calculator.html';
+}
+
 let myChart; // Global variable to store the Chart instance
 
 function calculateBMI() {
@@ -6,6 +11,7 @@ function calculateBMI() {
     const heightInput = document.getElementById('height');
     const weightInput = document.getElementById('weight');
     const resultDiv = document.getElementById('result');
+    const bmiMeterImg = document.getElementById('bmiMeterImg');
 
     const gender = genderInput.value;
     const age = parseInt(ageInput.value);
@@ -23,6 +29,9 @@ function calculateBMI() {
     resultDiv.innerHTML = `<div class="alert alert-success" role="alert">Your BMI is ${bmi.toFixed(2)} (${bmiCategory}).</div>`;
 
     updateChart(bmi);
+
+    // Show BMI Meter Chart
+    bmiMeterImg.style.display = 'block';
 }
 
 function calculateBMIScore(gender, height, weight, age) {
@@ -35,7 +44,8 @@ function getBMICategory(bmi) {
     if (bmi < 18.5) return 'Underweight';
     if (bmi < 24.9) return 'Normal Weight';
     if (bmi < 29.9) return 'Overweight';
-    return 'Obese';
+    if (bmi < 34.9) return 'Obese';
+    return 'Extremely Obese';
 }
 
 function updateChart(bmi) {
@@ -48,10 +58,16 @@ function updateChart(bmi) {
     myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Underweight', 'Normal Weight', 'Overweight', 'Obese'],
+            labels: ['Underweight', 'Normal Weight', 'Overweight', 'Obese', 'Extremely Obese'],
             datasets: [{
-                data: [bmi < 18.5 ? 1 : 0, (bmi >= 18.5 && bmi < 24.9) ? 1 : 0, (bmi >= 24.9 && bmi < 29.9) ? 1 : 0, bmi >= 29.9 ? 1 : 0],
-                backgroundColor: ['#ffc107', '#28a745', '#007bff', '#dc3545'],
+                data: [
+                    bmi < 18.5 ? 1 : 0,
+                    (bmi >= 18.5 && bmi < 24.9) ? 1 : 0,
+                    (bmi >= 24.9 && bmi < 29.9) ? 1 : 0,
+                    (bmi >= 29.9 && bmi < 34.9) ? 1 : 0,
+                    bmi >= 35.0 ? 1 : 0,
+                ],
+                backgroundColor: ['#ffc107', '#28a745', '#007bff', '#dc3545', '#6610f2'],
             }]
         },
         options: {
