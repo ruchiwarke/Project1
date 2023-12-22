@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="card mx-auto" style="max-width: 800px;"> <!-- Centered and extended width -->
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">BMI Calculator</h1>
+                <div class="calculator">
+
+                    <!-- Left Column -->
+                    <div class="left-column">
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select class="form-control" id="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age:</label>
+                            <input type="number" class="form-control" id="age" placeholder="Enter age" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="height">Height (cm):</label>
+                            <input type="number" class="form-control" id="height" placeholder="Enter height in cm" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">Weight (kg):</label>
+                            <input type="number" class="form-control" id="weight" placeholder="Enter weight in kg" required>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" onclick="calculateBMI()">Calculate BMI</button>
+
+                        <div id="result" class="mt-3 p-3 border rounded text-center"></div> <!-- Centered text and rectangular box -->
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="right-column">
+                        <div class="chart-container">
+                            <canvas id="bmiChart" style="max-width: 400px; margin: 0 auto;"></canvas> <!-- Centered and limited width -->
+                        </div>
+
+                        <!-- BMI Meter Chart -->
+                        <div class="bmi-meter">
+                            <img id="bmiMeterImg" src="https://www.pnbmetlife.com/content/dam/pnb-metlife/images/icons/bmi-calculator/meter.png" alt="BMI Meter Chart" style="display: none;">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
